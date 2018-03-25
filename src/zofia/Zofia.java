@@ -21,7 +21,7 @@ public class Zofia {
     private PersonalityFunction consumption;
     private PersonalityFunction utility;
 
-    public Zofia(State myState, Position myLocation, int myHealth, int myWealth, int myPower,
+    public Zofia(Position myLocation, int myHealth, int myWealth, int myPower,
         Position healthLocation, Position wealthLocation, Position powerLocation) {
         this.setState(new Stationary());
         this.myLocation = myLocation;
