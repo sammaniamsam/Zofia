@@ -194,4 +194,9 @@ public class Zofia {
     public Selector getSelector() { return selector; }
 
     public Position getFlagLocation() { return flagLocation; }
+
+    public boolean isAtFlag() {
+        return this.myLocation.getX() == this.flagLocation.getX() &&
+            this.myLocation.getY() == this.flagLocation.getY();
+    }
 }

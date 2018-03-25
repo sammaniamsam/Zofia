@@ -8,18 +8,17 @@ import zofia.Zofia;
 public class Utility1 implements PersonalityFunction{
 
     /**
-     * Sigmoid Curve
+     * Sigmoid Curve function based on maximum 'X' value of 100
      * @param zofia
      * @return double that represents the utility of health
      */
     @Override
     public double calculateHealth(Zofia zofia) {
-        double d = 100.0 / (1.0 + (Math.pow(Math.E, (0.1 * (zofia.getMyHealth() - 50.0)))));
         return 100.0 / (1.0 + (Math.pow(Math.E, (0.1 * (zofia.getMyHealth() - 50.0)))));
     }
 
     /**
-     * Linear
+     * Linear function based on maximum 'X' value of 100
      * @param zofia
      * @return double that represents the utility of wealth
      */
@@ -29,7 +28,7 @@ public class Utility1 implements PersonalityFunction{
     }
 
     /**
-     * Exponential Decay
+     * Exponential Decay function based on maximum 'X' value of 100
      * @param zofia
      * @return double that represents the utility of power
      */
