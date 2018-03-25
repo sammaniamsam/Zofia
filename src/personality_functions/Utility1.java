@@ -7,9 +7,34 @@ import zofia.Zofia;
  */
 public class Utility1 implements PersonalityFunction{
 
+    /**
+     * Sigmoid Curve
+     * @param zofia
+     * @return double that represents the utility of health
+     */
     @Override
-    public double calculate(Zofia zofia) {
-        return 0;
+    public double calculateHealth(Zofia zofia) {
+        double d = 100.0 / (1.0 + (Math.pow(Math.E, (0.1 * (zofia.getMyHealth() - 50.0)))));
+        return 100.0 / (1.0 + (Math.pow(Math.E, (0.1 * (zofia.getMyHealth() - 50.0)))));
     }
 
+    /**
+     * Linear
+     * @param zofia
+     * @return double that represents the utility of wealth
+     */
+    @Override
+    public double calculateWealth(Zofia zofia) {
+        return 100.0 - zofia.getMyWealth();
+    }
+
+    /**
+     * Exponential Decay
+     * @param zofia
+     * @return double that represents the utility of power
+     */
+    @Override
+    public double calculatePower(Zofia zofia) {
+        return Math.pow(0.96, (zofia.getMyPower() - 112.8));
+    }
 }

@@ -5,11 +5,11 @@ import zofia.Zofia;
 /**
  * Created by Sam Man on 3/24/2018.
  */
-public class DistributionActionSelector implements PersonalityFunction {
+public class DistributionActionSelector implements Selector{
 
     @Override
-    public double calculate(Zofia zofia) {
-        return 0;
+    public void select(Zofia zofia) {
+
     }
 
 }

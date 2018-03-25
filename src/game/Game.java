@@ -3,9 +3,6 @@ package game;
 import location.Position;
 import zofia.Zofia;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 /**
  * Created by Sam Man on 3/24/2018.
  */
@@ -19,6 +16,10 @@ public class Game {
 
     public Game() {
         createZofia();
+        this.zofia = new Zofia(this.zofia, 19, 50, 100);
+        System.out.println(this.zofia.calculateHealthUtility());
+        System.out.println(this.zofia.calculateWealthUtility());
+        System.out.println(this.zofia.calculatePowerUtility());
     }
 
     private void createZofia() {
@@ -26,7 +27,8 @@ public class Game {
         Position health = new Position(1, 5);
         Position wealth = new Position(4, 3);
         Position power = new Position(0, 3);
-        this.zofia = new Zofia(new Position(0,0), 25, 50, 100, health, wealth, power);
+        Position flag = new Position(9, 10);
+        this.zofia = new Zofia(new Position(0,0), 25, 50, 100, health, wealth, power, flag);
     }
 
 }

@@ -1,7 +1,7 @@
 package zofia;
 
 import location.Position;
-import personality_functions.PersonalityFunction;
+import personality_functions.*;
 import states.State;
 import states.Stationary;
 
@@ -18,12 +18,27 @@ public class Zofia {
     private Position healthLocation;
     private Position wealthLocation;
     private Position powerLocation;
+    private Position flagLocation;
     private PersonalityFunction consumption;
     private PersonalityFunction utility;
+    private Selector selector;
 
+    /**
+     *
+     * @param myLocation
+     * @param myHealth
+     * @param myWealth
+     * @param myPower
+     * @param healthLocation
+     * @param wealthLocation
+     * @param powerLocation
+     */
     public Zofia(Position myLocation, int myHealth, int myWealth, int myPower,
-        Position healthLocation, Position wealthLocation, Position powerLocation) {
+        Position healthLocation, Position wealthLocation, Position powerLocation, Position flagLocation) {
         this.setState(new Stationary());
+        this.setUtilityStrategy(new Utility1());
+        this.setConsumptionStrategy(new Consumption1());
+        this.setActionSelector(new ActionSelector());
         this.myLocation = myLocation;
         this.myHealth = myHealth;
         this.myWealth = myWealth;
@@ -31,6 +46,29 @@ public class Zofia {
         this.healthLocation = healthLocation;
         this.wealthLocation = wealthLocation;
         this.powerLocation = powerLocation;
+        this.flagLocation = flagLocation;
+    }
+
+    /**
+     *
+     * @param zofia
+     * @param myHealth
+     * @param myWealth
+     * @param myPower
+     */
+    public Zofia(Zofia zofia, int myHealth, int myWealth, int myPower) {
+        this.setState(zofia.getMyState());
+        this.setUtilityStrategy(zofia.getUtility());
+        this.setConsumptionStrategy(zofia.getConsumption());
+        this.setActionSelector(zofia.getSelector());
+        this.myLocation = zofia.getMyLocation();
+        this.myHealth = myHealth;
+        this.myWealth = myWealth;
+        this.myPower = myPower;
+        this.healthLocation = zofia.getHealthLocation();
+        this.wealthLocation = zofia.getWealthLocation();
+        this.powerLocation = zofia.getPowerLocation();
+        this.flagLocation = zofia.getFlagLocation();
     }
 
     /**
@@ -44,7 +82,7 @@ public class Zofia {
 
     /**
      * Set strategy
-     * @param consumption PersonalityFunction strategy that is set for the Zofina's
+     * @param consumption PersonalityFunction strategy that is set for Zofia's
      * calculateConsumption method.
      */
     public void setConsumptionStrategy(PersonalityFunction consumption) {
@@ -53,11 +91,19 @@ public class Zofia {
 
     /**
      * Set strategy
-     * @param utility PersonalityFunction strategy that is set for the Zofina's
+     * @param utility PersonalityFunction strategy that is set for Zofia's
      * calculateUtility method.
      */
     public void setUtilityStrategy(PersonalityFunction utility) {
         this.utility = utility;
+    }
+
+    /**
+     * Set strategy
+     * @param selector Selector strategy that is set for Zofia's select method.
+     */
+    public void setActionSelector(Selector selector) {
+
     }
 
     /**
@@ -67,12 +113,46 @@ public class Zofia {
         this.myState.act(this);
     }
 
-    public double calculateConsumption() {
-        return this.consumption.calculate(this);
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public Double calculateDistance(Position a, Position b) {
+        return Math.sqrt(Math.pow((b.getX() - a.getX()), 2) + Math.pow((b.getY() - a.getY()), 2));
     }
 
-    public double calculateUtility() {
-        return this.utility.calculate(this);
+    /**
+     *
+     * @param newLocation
+     */
+    public void moveTo(Position newLocation) {
+        this.myLocation = newLocation;
+    }
+
+    public double calculateHealthConsumption() {
+        return this.consumption.calculateHealth(this);
+    }
+
+    public double calculateWealthConsumption() {
+        return this.consumption.calculateWealth(this);
+    }
+
+    public double calculatePowerConsumption() {
+        return this.consumption.calculatePower(this);
+    }
+
+    public double calculateHealthUtility() {
+        return this.utility.calculateHealth(this);
+    }
+
+    public double calculateWealthUtility() {
+        return this.utility.calculateWealth(this);
+    }
+
+    public double calculatePowerUtility() {
+        return this.utility.calculatePower(this);
     }
 
     public State getMyState() {
@@ -107,12 +187,11 @@ public class Zofia {
         return powerLocation;
     }
 
-    public Double calculateDistance(Position a, Position b) {
-        return Math.sqrt(Math.pow((b.getX() - a.getX()), 2) + Math.pow((b.getY() - a.getY()), 2));
-    }
+    public PersonalityFunction getConsumption() { return consumption;}
 
-    public void moveTo(Position newLocation) {
-        this.myLocation = newLocation;
-    }
+    public PersonalityFunction getUtility() { return utility; }
 
+    public Selector getSelector() { return selector; }
+
+    public Position getFlagLocation() { return flagLocation; }
 }

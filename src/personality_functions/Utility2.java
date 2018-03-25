@@ -8,8 +8,17 @@ import zofia.Zofia;
 public class Utility2 implements PersonalityFunction{
 
     @Override
-    public double calculate(Zofia zofia) {
+    public double calculateHealth(Zofia zofia) {
         return 0;
     }
 
+    @Override
+    public double calculateWealth(Zofia zofia) {
+        return 0;
+    }
+
+    @Override
+    public double calculatePower(Zofia zofia) {
+        return 0;
+    }
 }
