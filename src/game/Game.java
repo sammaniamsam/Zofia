@@ -15,23 +15,78 @@ public class Game {
     private Zofia zofia;
 
     public Game() {
-        createZofia();
-        this.zofia = new Zofia(this.zofia, 19, 50, 100);
-        //System.out.println(this.zofia.calculateHealthUtility());
-        //System.out.println(this.zofia.calculateWealthUtility());
-        //System.out.println(this.zofia.calculatePowerUtility());
-        System.out.println(this.zofia.calculateHealthConsumption());
-        System.out.println(this.zofia.calculateWealthConsumption());
-        System.out.println(this.zofia.calculatePowerConsumption());
+        /* Non Distribution Action Selector */
+        runZofia1();
+        runZofia2();
+        /* Distribution Action Selector */
     }
 
-    private void createZofia() {
-        // Based on a 10 X 10 Board
-        Position health = new Position(100, 50);
+    ///////////////////////////////////////
+    /* Non Distribution Action Selector */
+    ///////////////////////////////////////
+    /**
+     * Zofia personality 1.
+     * Zofia using Utility1 class, Consumption1 class, and Action selector class.
+     */
+    private void runZofia1() {
+        //Iteration 1
+        /**
+         * RESULT: Zofia moved towards the flag, because she had enough resources to do so on the
+         * first try.
+         */
+        Position health = new Position(41, 30);
         Position wealth = new Position(40, 30);
         Position power = new Position(0, 300);
-        Position flag = new Position(9, 10);
+        Position flag = new Position(20, 10);
         this.zofia = new Zofia(new Position(0,0), 25, 50, 100, health, wealth, power, flag);
+        this.zofia.act();
+        //Iteration 2
+        /**
+         * RESULT: Zofia moved towards the health, because the sigmoid utility function for health influenced her
+         * to do so over the linear function for wealth, given Zofia's resource levels and the resource positions
+         */
+        health = new Position(22, 22);
+        wealth = new Position(20, 20);
+        power = new Position(0, 300);
+        flag = new Position(110, 120);
+        this.zofia = new Zofia(new Position(0,0), 25, 25, 100, health, wealth, power, flag);
+        this.zofia.act();
+        //Iteration 3
+        /**
+         * RESULT: Zofia moved towards the health, because the sigmoid utility function for health influenced her
+         * to do so over the linear function for wealth, given Zofia's resource levels and the resource positions
+         */
+        health = new Position(41, 30);
+        wealth = new Position(40, 30);
+        power = new Position(0, 300);
+        flag = new Position(110, 120);
+        this.zofia = new Zofia(new Position(0,0), 25, 50, 100, health, wealth, power, flag);
+        this.zofia.act();
+        //Iteration 4
+        health = new Position(41, 30);
+        wealth = new Position(40, 30);
+        power = new Position(0, 300);
+        flag = new Position(110, 120);
+        this.zofia = new Zofia(new Position(0,0), 25, 50, 100, health, wealth, power, flag);
+        this.zofia.act();
+        //Iteration 5
+        health = new Position(41, 30);
+        wealth = new Position(40, 30);
+        power = new Position(0, 300);
+        flag = new Position(110, 120);
+        this.zofia = new Zofia(new Position(0,0), 25, 50, 100, health, wealth, power, flag);
+        this.zofia.act();
     }
 
+    /**
+     * Zofia personality 1.
+     * Zofia using Utility1 class, Consumption1 class, and Action selector class.
+     */
+    private void runZofia2() {
+
+    }
+
+    ///////////////////////////////////////
+    /* Distribution Action Selector */
+    ///////////////////////////////////////
 }

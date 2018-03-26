@@ -1,40 +1,41 @@
 package personality_functions;
 
+import location.Position;
 import zofia.Zofia;
 
 /**
  * Created by Sam Man on 3/24/2018.
  */
-public class Consumption1 implements PersonalityFunction {
+public class Consumption1 extends Consumption {
 
     @Override
-    public double calculateHealth(Zofia zofia) {
+    public double calculateHealth(Zofia zofia, Position target) {
         // Having power decreases the amount of health consumed
         if(zofia.getMyPower() > 0) {
-            return zofia.calculateDistance(zofia.getMyLocation(), zofia.getHealthLocation()) * 0.75;
+            return zofia.calculateDistance(zofia.getMyLocation(), target) * 0.75;
         // Without power the full amount of health is consumed
         } else {
-            return zofia.calculateDistance(zofia.getMyLocation(), zofia.getHealthLocation());
+            return zofia.calculateDistance(zofia.getMyLocation(), target);
         }
     }
 
     @Override
-    public double calculateWealth(Zofia zofia) {
+    public double calculateWealth(Zofia zofia, Position target) {
         // Having power decreases the amount of wealth consumed
         if(zofia.getMyPower() > 0) {
-            return zofia.calculateDistance(zofia.getMyLocation(), zofia.getWealthLocation()) * 0.9;
+            return zofia.calculateDistance(zofia.getMyLocation(), target) * 0.9;
         // Without power the full amount of wealth is consumed
         } else if(zofia.getMyHealth() > 0) {
-            return zofia.calculateDistance(zofia.getMyLocation(), zofia.getWealthLocation());
+            return zofia.calculateDistance(zofia.getMyLocation(), target);
         // Without health, twice the amount of wealth is consumed
         } else {
-            return zofia.calculateDistance(zofia.getMyLocation(), zofia.getWealthLocation()) * 1.5;
+            return zofia.calculateDistance(zofia.getMyLocation(), target) * 1.5;
         }
     }
 
     @Override
-    public double calculatePower(Zofia zofia) {
+    public double calculatePower(Zofia zofia, Position target) {
         // Power decreases at a constant rate that is not impacted by health or wealth
-        return zofia.calculateDistance(zofia.getMyLocation(), zofia.getPowerLocation()) * 0.7;
+        return zofia.calculateDistance(zofia.getMyLocation(), target) * 0.7;
     }
 }

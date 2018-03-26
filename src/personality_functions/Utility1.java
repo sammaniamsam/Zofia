@@ -5,7 +5,7 @@ import zofia.Zofia;
 /**
  * Created by Sam Man on 3/24/2018.
  */
-public class Utility1 implements PersonalityFunction{
+public class Utility1 extends Utility {
 
     /**
      * Sigmoid Curve function based on maximum 'X' value of 100

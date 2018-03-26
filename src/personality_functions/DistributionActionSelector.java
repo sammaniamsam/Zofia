@@ -5,7 +5,7 @@ import zofia.Zofia;
 /**
  * Created by Sam Man on 3/24/2018.
  */
-public class DistributionActionSelector implements Selector{
+public class DistributionActionSelector extends Selector{
 
     @Override
     public void select(Zofia zofia) {

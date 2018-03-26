@@ -5,10 +5,10 @@ import zofia.Zofia;
 /**
  * Created by Sam Man on 3/25/2018.
  */
-public interface Selector {
+public abstract class Selector {
     /**
      * Selects an action for Zofia to take
      * @param zofia
      */
-    void select(Zofia zofia);
+    public abstract void select(Zofia zofia);
 }

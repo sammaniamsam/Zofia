@@ -8,6 +8,22 @@ import zofia.Zofia;
 public class Stationary implements State{
     @Override
     public void act(Zofia zofia) {
-
+        System.out.println("Zofia is Stationary");
+        if(zofia.isAtFlag()) {
+            System.out.println("Zofia is moving to the flag");
+            zofia.setState(new MovingToFlag());
+        } else if (zofia.isAtHealthResource()) {
+            System.out.println("Zofia is moving to health");
+            zofia.setState(new MovingToHealth());
+        } else if (zofia.isAtWealthResource()) {
+            System.out.println("Zofia is moving to wealth");
+            zofia.setState(new MovingToWealth());
+        } else if (zofia.isAtPowerResource()) {
+            System.out.println("Zofia is moving to power");
+            zofia.setState(new MovingToPower());
+        } else {
+            System.out.println("Zofia cannot move due to lack of resources");
+            zofia.setState(new MovingToHealth());
+        }
     }
 }

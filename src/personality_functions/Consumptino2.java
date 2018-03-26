@@ -5,7 +5,7 @@ import zofia.Zofia;
 /**
  * Created by Sam Man on 3/24/2018.
  */
-public class Consumptino2 implements PersonalityFunction {
+public class Consumptino2 extends Utility {
 
     @Override
     public double calculateHealth(Zofia zofia) {
