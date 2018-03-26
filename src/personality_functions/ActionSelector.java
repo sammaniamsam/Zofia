@@ -15,10 +15,12 @@ public class ActionSelector extends Selector {
             double healthScore = zofia.getMyHealth() > 0 ? zofia.calculateHealthUtility() : 0.0;
             double wealthScore = zofia.getMyWealth() > 0 ? zofia.calculateWealthUtility() : 0.0;
             double powerScore = zofia.getMyPower() > 0 ? zofia.calculatePowerUtility() : 0.0;
+            //System.out.println(powerScore);
 
             double healthConsumption = zofia.getMyHealth() - zofia.calculateHealthConsumption(zofia.getHealthLocation());
             double wealthConsumption = zofia.getMyWealth() - zofia.calculateWealthConsumption(zofia.getWealthLocation());
             double powerConsumption = zofia.getMyPower() - zofia.calculatePowerConsumption(zofia.getPowerLocation());
+            //System.out.println(powerConsumption);
 
             if(healthConsumption > 0 || wealthConsumption > 0 || powerConsumption > 0) {
                 if(healthConsumption > 0) {
