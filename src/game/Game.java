@@ -5,6 +5,8 @@ import personality_functions.Consumption2;
 import personality_functions.Utility2;
 import zofia.Zofia;
 
+import java.util.Random;
+
 /**
  * Created by Sam Man on 3/24/2018.
  */
@@ -31,6 +33,9 @@ public class Game {
      * Zofia using Utility1 class, Consumption1 class, and Action selector class.
      */
     private void runZofia1() {
+        System.out.println("****************************");
+        System.out.println("runZofia1");
+        System.out.println("****************************");
         //Iteration 1
         /**
          * RESULT: Zofia moved towards the flag, because she had enough resources to do so on the
@@ -94,15 +99,41 @@ public class Game {
      * Zofia using Utility1 class, Consumption1 class, and Action selector class.
      */
     private void runZofia2() {
-        this.zofia = new Zofia(new Position(0,0), 100, 100, 100, health, wealth, power, flag);
-        this.zofia.setConsumptionStrategy(new Consumption2());
-        this.zofia.setUtilityStrategy(new Utility2());
+        System.out.println("****************************");
+        System.out.println("runZofia2");
+        System.out.println("****************************");
 
-        //Iteration 1
-        
+        Random random = new Random();
+
+        /**
+         * RESULT: Will be random outcome as to what Zofia will do.
+         */
+        // Iterations 1 - 5
+        for(int i=0; i < 5; i++){
+            int x = random.nextInt(50) + 1, y = random.nextInt(50) + 1;
+            Position health = new Position(x, y);
+            x = random.nextInt(50) + 1;
+            y = random.nextInt(50) + 1;
+            Position wealth = new Position(x, y);
+            x = random.nextInt(50) + 1;
+            y = random.nextInt(50) + 1;
+            Position power = new Position(x, y);
+            x = random.nextInt(50) + 1;
+            y = random.nextInt(50) + 1;
+            Position flag = new Position(x, y);
+            this.zofia = new Zofia(new Position(0, 0), random.nextInt(100) + 1, random.nextInt(100) + 1, random.nextInt(100) + 1, health, wealth, power, flag);
+            this.zofia.setConsumptionStrategy(new Consumption2());
+            this.zofia.setUtilityStrategy(new Utility2());
+            this.zofia.act();
+        }
     }
 
     ///////////////////////////////////////
     /* Distribution Action Selector */
     ///////////////////////////////////////
+
+    private void runZofia3() {
+
+    }
+
 }

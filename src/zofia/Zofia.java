@@ -214,4 +214,17 @@ public class Zofia {
         return this.myLocation.getX() == this.powerLocation.getX() &&
                 this.myLocation.getY() == this.powerLocation.getY();
     }
+
+    /**
+     * Recharges the appropriate resource for Zofia
+     */
+    public void recharge() {
+        if(this.isAtPowerResource()) {
+            this.myPower = 100;
+        } else if (this.isAtWealthResource()) {
+            this.myWealth = 100;
+        } else if (this.isAtHealthResource()) {
+            this.myHealth = 100;
+        }
+    }
 }

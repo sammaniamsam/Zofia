@@ -15,13 +15,13 @@ public class Consumption2 extends Consumption {
 
     @Override
     public double calculateWealth(Zofia zofia, Position target) {
-        return zofia.calculateDistance(zofia.getMyLocation(), target) * 0.5;
+        return zofia.calculateDistance(zofia.getMyLocation(), target);
     }
 
     @Override
     public double calculatePower(Zofia zofia, Position target) {
         // Power decreases at a constant rate that is not impacted by health or wealth
-        return zofia.calculateDistance(zofia.getMyLocation(), target) * 0.4;
+        return zofia.calculateDistance(zofia.getMyLocation(), target);
     }
 
 }
